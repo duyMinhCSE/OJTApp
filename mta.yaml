@@ -25,15 +25,10 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: OJTApp-db
-      - name: OJTApp-auth
-  - name: OJTApp-srv
-    type: java
-    path: srv
-    requires:
+      - name: cfhdi-db
       - name: OJTApp-auth
 
-  - name: OJTApp-db-deployer
+  - name: cfhdi-db-deployer
     type: hdb
     path: gen/db
     parameters:
@@ -43,7 +38,7 @@ modules:
       commands:
         - npm run build
     requires:
-      - name: OJTApp-db
+      - name: cfhdi-db
 
 resources:
   - name: OJTApp-auth
@@ -55,7 +50,7 @@ resources:
       config:
         xsappname: OJTApp-${org}-${space}
         tenant-mode: dedicated
-  - name: OJTApp-db
+  - name: cfhdi-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
